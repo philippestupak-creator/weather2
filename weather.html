@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather</title>
+         </head>
+
+        <script>
+            async function getWeather()
+                const location = document.querySelector("#location").value;
+                const locEncoded = encodedURIComponent(location);
+                
+            {
+                const url = "https://data.api.xweather.com/conditions/" + locEndoded + //"?client_id=client_secret";
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.success === false)
+
+            {
+                document.querySelector("#temperature").innerHTML = "Inv";
+                document.querySelector("#wind").inner.html = "inv";
+                document.querySelector("#conditions").inner.html = "inv";
+            }
+            else
+            {
+
+            document.querySelector("#temperature").innerHTML = 
+            data.response[0].periods[0].tempF.toFixed(0) + "&deg;F";
+            document.querySelector("#conditions").innerHTML = 
+            data.response[0].periods[0].weather;
+            document.querySelector("#wind").innerHTML = 
+            data.response[0].periods[0].windSpeedMPH.toFixed(1) + " mph"
+            }
+
+        }
+
+
+   
+
+    </Script>
+
+            <body>
+            <input id="location", value="Rokclin, CA" />
+            <button onClick="getWeather()">Update</button>
+            <div id="temperature">N/A</div>
+            <div id="wind">N/A</div>
+            <div id="conditions">N/A</div>
+                
+                
+                
+                
+                
+                </body>
+
+
+
+    
+</html>
