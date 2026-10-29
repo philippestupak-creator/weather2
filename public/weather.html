@@ -10,7 +10,7 @@
                 const locEncoded = encodedURIComponent(location);
                 
             {
-                const url = "https://data.api.xweather.com/conditions/" + locEndoded + //"?client_id=client_secret";
+            const url = `/weather/${locEncoded}`; //?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`;
 
             const response = await fetch(url);
             const data = await response.json();
@@ -26,11 +26,12 @@
             {
 
             document.querySelector("#temperature").innerHTML = 
-            data.response[0].periods[0].tempF.toFixed(0) + "&deg;F";
-            document.querySelector("#conditions").innerHTML = 
-            data.response[0].periods[0].weather;
+                data.temperature.toFixed(0) + "&deg;F";
+            document.querySelector("#word").innerHTML = 
+                data.conditions;
             document.querySelector("#wind").innerHTML = 
-            data.response[0].periods[0].windSpeedMPH.toFixed(1) + " mph"
+                data.windSpeed.toFixed(1) + " mph"
+            document.querySelector("#icon").src = "icons/" + icon;
             }
 
         }
